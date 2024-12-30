@@ -8,7 +8,7 @@ class Teknisi_model extends CI_Model
      * @param int $id_teknisi
      * @return array
      */
-    public function getTugasTeknisi($id_teknisi)
+    public function getTugasTeknisi()
     {
         $this->db->select('
         pengaduan.id, 
@@ -20,7 +20,6 @@ class Teknisi_model extends CI_Model
     ');
         $this->db->from('pengaduan');
         $this->db->join('user', 'pengaduan.instansi_id = user.id', 'left');
-        $this->db->where('pengaduan.instansi_id', $id_teknisi);
         $this->db->order_by('pengaduan.tgl_pengaduan', 'DESC');
 
         return $this->db->get()->result_array();

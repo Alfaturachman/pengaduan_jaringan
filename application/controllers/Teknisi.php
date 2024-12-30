@@ -25,7 +25,7 @@ class Teknisi extends CI_Controller
         $data = [
             'judul' => 'Daftar Tugas Teknisi',
             'user' => $this->user,
-            'tugas' => $this->model->getTugasTeknisi($this->user['id'])
+            'tugas' => $this->model->getTugasTeknisi()
         ];
 
         $this->templating->load('teknisi/teknisi', $data); // Load view dengan data tugas
