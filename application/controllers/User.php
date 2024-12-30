@@ -45,8 +45,10 @@ class User extends CI_Controller
     public function tambah_data_aksi()
     {
         if ($this->input->is_ajax_request() == true) {
-            $this->form_validation->set_rules('judul_pengaduan', 'Judul pengaduan', 'required|max_length[128]');
+            $this->form_validation->set_rules('judul_pengaduan', 'Judul pengaduan', 'required|max_length[255]');
             $this->form_validation->set_rules('isi_pengaduan', 'Isi pengaduan', 'required');
+            $this->form_validation->set_rules('alamat', 'Alamat', 'required|max_length[255]');
+            $this->form_validation->set_rules('no_hp', 'Nomor Telepon', 'required|numeric|max_length[20]');
 
             $this->form_validation->set_error_delimiters('', '');
 
@@ -54,21 +56,22 @@ class User extends CI_Controller
                 $errors = [
                     'judul_pengaduan' => form_error('judul_pengaduan'),
                     'isi_pengaduan' => form_error('isi_pengaduan'),
+                    'alamat' => form_error('alamat'),
+                    'no_hp' => form_error('no_hp'),
                 ];
 
                 $data = [
-                    'status' => FALSE,
+                    'status' => false,
                     'errors' => $errors
                 ];
 
                 $this->output->set_content_type('application/json')->set_output(json_encode($data));
             } else {
                 $this->model->tambah_data();
-                $data['status'] = TRUE;
+                $data['status'] = true;
                 $this->output->set_content_type('application/json')->set_output(json_encode($data));
             }
         } else {
-            //echo "error";
             redirect('tambah-pengaduan');
         }
     }

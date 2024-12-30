@@ -31,14 +31,24 @@ class User_model extends CI_Model
 
     public function tambah_data()
     {
+        date_default_timezone_set('Asia/Jakarta');
         $data = [
             'instansi_id' => $this->user['id'],
-            'tgl_pengaduan' => date('Y-m-d'),
+            'tgl_pengaduan' => date('Y-m-d H:i:s'),
             'judul_pengaduan' => htmlspecialchars($this->input->post('judul_pengaduan', true)),
-            'isi_pengaduan' => htmlspecialchars($this->input->post('isi_pengaduan', true))
+            'isi_pengaduan' => htmlspecialchars($this->input->post('isi_pengaduan', true)),
+            'alamat_pengaduan' => htmlspecialchars($this->input->post('alamat', true)),
+            'no_telp_pengaduan' => htmlspecialchars($this->input->post('no_hp', true)),
+            'status_pengaduan' => 0
         ];
 
-        $this->db->insert('pengaduan', $data);
+        log_message('info', 'Insert Data: ' . json_encode($data));
+
+        if (!$this->db->insert('pengaduan', $data)) {
+            log_message('error', 'Database Error: ' . $this->db->error());
+            throw new Exception('Database Error');
+        }
+
         $this->session->set_flashdata('msg', 'submit.');
     }
 
