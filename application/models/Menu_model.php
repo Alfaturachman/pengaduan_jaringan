@@ -70,13 +70,55 @@ class Menu_model extends CI_Model
 
     public function ubahStatusPengaduan()
     {
+        // Mendapatkan data dari form
         $id = $this->input->post('id');
         $status = $this->input->post('status_pengaduan');
-        $this->db->set('status_pengaduan', $status);
-        $this->db->where('id', $id);
-        $this->db->update('pengaduan');
+        $keterangan = $this->input->post('keterangan');
 
-        $this->session->set_flashdata('msg', 'diubah.');
+        // Menyiapkan data untuk update status pengaduan
+        $data = [
+            'status_pengaduan' => $status
+        ];
+
+        // Update status dan keterangan pengaduan
+        $this->db->where('id', $id);
+        $this->db->update('pengaduan', $data);
+
+        // Cek apakah ada file yang diupload
+        if ($_FILES['file_pengaduan']['name']) {
+            // Mengupload file
+            $config['upload_path'] = './uploads/pengaduan/';
+            $config['allowed_types'] = 'jpg|jpeg|png|pdf|doc|docx';
+            $config['max_size'] = 2048; // 2MB
+            $config['file_name'] = time() . '_' . $_FILES['file_pengaduan']['name'];
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('file_pengaduan')) {
+                $fileData = $this->upload->data();
+                $file_name = $fileData['file_name']; // Menyimpan nama file yang diupload
+
+                // Menyimpan informasi file di tabel teknisi_upload
+                $uploadData = [
+                    'id_pengaduan' => $id,
+                    'keterangan' => $keterangan, 
+                    'file_pengaduan' => $file_name
+                ];
+
+                // Insert ke tabel teknisi_upload
+                $this->db->insert('teknisi_upload', $uploadData);
+            } else {
+                // Jika upload gagal, tampilkan pesan error
+                $this->session->set_flashdata('error', $this->upload->display_errors());
+                redirect('teknisi/ubah_status');
+            }
+        }
+
+        // Set flashdata untuk pemberitahuan
+        $this->session->set_flashdata('msg', 'Status Pengaduan berhasil diubah.');
+
+        // Redirect ke daftar_tugas
+        redirect('daftar_tugas');
     }
 
     public function getNamaInstansi()

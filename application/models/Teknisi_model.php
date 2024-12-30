@@ -16,6 +16,8 @@ class Teknisi_model extends CI_Model
         pengaduan.isi_pengaduan, 
         pengaduan.tgl_pengaduan, 
         pengaduan.status_pengaduan,
+        pengaduan.alamat_pengaduan,
+        pengaduan.no_telp_pengaduan,
         user.nama_instansi
     ');
         $this->db->from('pengaduan');
