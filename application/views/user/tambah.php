@@ -74,19 +74,26 @@ For IE support of object-fit add this to your document
                     <label for="judul_pengaduan">Judul Keluhan</label>
                     <select name="judul_pengaduan" class="form-control" id="judul_pengaduan">
                         <option value="" selected disabled>Pilih Judul Keluhan</option>
-                        <option value="keluhan koneksi Wifi tidak stabil">Keluhan Koneksi WiFi yang Tidak Stabil dan
-                            Sering Putus</option>
+                        <option value="keluhan koneksi Wifi tidak stabil">Keluhan Koneksi WiFi yang Tidak Stabil dan Sering Putus</option>
                         <option value="kecepatan wifi yang lambat">Kekecewaan atas Kecepatan WiFi yang Lambat</option>
-                        <option value="Kesulitan Mengakses Internet">Kesulitan Mengakses Internet Akibat Koneksi WiFi
-                            yang Tidak Stabil</option>
+                        <option value="Kesulitan Mengakses Internet">Kesulitan Mengakses Internet Akibat Koneksi WiFi yang Tidak Stabil</option>
                         <option value="Masalah WiFi Lemah di Area Tertentu">Masalah WiFi Lemah di Area Tertentu</option>
                     </select>
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-group">
                     <label for="isi_pengaduan">Isi Keluhan</label>
-                    <textarea name="isi_pengaduan" class="form-control" id="isi_pengaduan" cols="30"
-                        rows="4"></textarea>
+                    <textarea name="isi_pengaduan" class="form-control" id="isi_pengaduan" cols="30" rows="3" placeholder="Masukkan Isi Keluhan"></textarea>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group">
+                    <label for="alamat">Alamat</label>
+                    <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="3" placeholder="Masukkan Alamat"></textarea>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group">
+                    <label for="no_hp">Nomor HP</label>
+                    <input type="text" name="no_hp" class="form-control" id="no_hp" placeholder="Masukkan Nomor HP">
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="modal-footer">
