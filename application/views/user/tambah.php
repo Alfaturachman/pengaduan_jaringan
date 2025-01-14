@@ -7,13 +7,13 @@
         <div class="col-12">
 
             <?php if ($this->session->flashdata('msg')) : ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                Keluhan anda berhasil di <strong><?= $this->session->flashdata('msg'); ?></strong> Silahkan menunggu
-                proses selanjutnya oleh tim terkait, terima kasih.
-            </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    Keluhan anda berhasil di <strong><?= $this->session->flashdata('msg'); ?></strong> Silahkan menunggu
+                    proses selanjutnya oleh tim terkait, terima kasih.
+                </div>
             <?php endif; ?>
 
         </div>
@@ -96,13 +96,12 @@ For IE support of object-fit add this to your document
                 </div>
                 <div class="form-group">
                     <label for="alamat">Alamat</label>
-                    <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="3"
-                        placeholder="Masukkan Alamat"></textarea>
+                    <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="3" placeholder="Masukkan Alamat"><?= htmlspecialchars($alamat); ?></textarea>
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-group">
                     <label for="no_hp">Nomor HP</label>
-                    <input type="text" name="no_hp" class="form-control" id="no_hp" placeholder="Masukkan Nomor HP">
+                    <input type="text" name="no_hp" class="form-control" id="no_hp" placeholder="Masukkan Nomor HP" value="<?= htmlspecialchars($no_hp); ?>">
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="modal-footer">
@@ -156,38 +155,38 @@ For IE support of object-fit add this to your document
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
 <script>
-$(document).ready(function() {
-    $("#formTambahData").submit(function(e) {
-        e.preventDefault()
+    $(document).ready(function() {
+        $("#formTambahData").submit(function(e) {
+            e.preventDefault()
 
-        var form = $("#formTambahData")
-        var data = $(this).serialize()
+            var form = $("#formTambahData")
+            var data = $(this).serialize()
 
-        $.ajax({
-            url: form.attr('action'),
-            type: form.attr('method'),
-            dataType: 'json',
-            data: data,
-            success: function(res) {
-                // jika respon -> status = true
-                if (res.status) {
-                    $('#tambah-data').modal('toggle')
-                    location.reload()
-                    // jika respon -> status = false
-                } else {
-                    $.each(res.errors, function(key, value) {
-                        $('[name="' + key + '"]').addClass('is-invalid');
-                        $('[name="' + key + '"]').next().text(value);
-                        if (value == "") {
-                            $('[name="' + key + '"]').removeClass('is-invalid');
-                            $('[name="' + key + '"]').addClass('is-valid');
-                        }
-                    })
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                dataType: 'json',
+                data: data,
+                success: function(res) {
+                    // jika respon -> status = true
+                    if (res.status) {
+                        $('#tambah-data').modal('toggle')
+                        location.reload()
+                        // jika respon -> status = false
+                    } else {
+                        $.each(res.errors, function(key, value) {
+                            $('[name="' + key + '"]').addClass('is-invalid');
+                            $('[name="' + key + '"]').next().text(value);
+                            if (value == "") {
+                                $('[name="' + key + '"]').removeClass('is-invalid');
+                                $('[name="' + key + '"]').addClass('is-valid');
+                            }
+                        })
+                    }
                 }
-            }
+            })
         })
     })
-})
 </script>
 
 </body>

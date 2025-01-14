@@ -34,9 +34,19 @@ class User extends CI_Controller
     public function tambah_data()
     {
         is_admin();
+
+        // Load model user jika belum dimuat
+        $this->load->model('User_model', 'user_model');
+
+        // Mendapatkan data user berdasarkan ID dari session
+        $id = $this->session->userdata('id_user');
+        $user_data = $this->user_model->get_user_by_id($id);
+
         $data = [
             'judul' => 'Tambah Pengaduan',
-            'user' => $this->user
+            'user' => $user_data,
+            'alamat' => $user_data['alamat'],
+            'no_hp' => $user_data['no_hp']
         ];
 
         $this->templating->load('user/tambah', $data);
