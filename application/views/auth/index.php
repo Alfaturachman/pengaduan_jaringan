@@ -38,7 +38,7 @@
                                 <!-- Nested Row within Card Body -->
                                 <div class="row">
                                     <div class="col-lg-5 d-block d-lg-block">
-                                        <img src="<?= base_url(); ?>/assets/img/login.svg" class="m-1"
+                                        <img src="<?= base_url(); ?>/assets/img/loginku.svg" class="m-1"
                                             style="width: 105%; height: 105%;">
                                     </div>
 

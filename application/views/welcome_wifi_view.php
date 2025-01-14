@@ -31,6 +31,25 @@
         align-items: center;
     }
 
+    .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .content-section {
+        margin-bottom: 50px;
+    }
+
+    .image-content img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .content-section p {
+        text-align: justify;
+    }
+
     .hero-overlay {
         position: absolute;
         top: 0;
@@ -63,7 +82,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
 
-            <img src="<?= base_url(); ?>/assets/img/logo_depan.png" width="130px" height="70px">
+            <img src="<?= base_url(); ?>/assets/img/logo_depan.png" width="135px" height="75px">
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,8 +91,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link scrollto" href="#hero">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link scrollto" href="#tentang">Tentang Kami</a></li>
                     <li class="nav-item"><a class="nav-link scrollto" href="#portofolio">Fasilitas</a></li>
-                    <li class="nav-item"><a class="nav-link scrollto" href="#tim">Tim Kami</a></li>
                     <li class="nav-item"><a class="nav-link scrollto" href="#kontak">Kontak</a></li>
                 </ul>
             </div>
@@ -95,13 +114,60 @@
 
     <main id="main">
 
+        <!-- Tentang Kami -->
+        <div class="container py-5" id="tentang">
+            <div class="section-title">
+                <h1 class="text-primary">Tentang Kami</h1>
+            </div>
+
+            <!-- First Section -->
+            <div class="row content-section align-items-center">
+                <div class="col-md-6">
+                    <p>Kehadiran PLN Icon Plus sebagai Anak Perusahaan PT PLN (Persero) mengemban misi untuk memenuhi
+                        kebutuhan
+                        dan harapan Pemangku Kepentingan dalam penyediaan solusi teknologi informasi dan komunikasi
+                        (TIK).
+                        Hal ini tidak hanya terbatas pada penyediaan layanan yang handal bagi pelanggan, tetapi juga
+                        pada
+                        kontribusi aktif perusahaan bagi perkembangan telekomunikasi nasional. Dalam mewujudkan misi
+                        tersebut, PLN Icon Plus secara proaktif melakukan peningkatan kapasitas dan perluasan jaringan
+                        sehingga dapat memperluas jangkauan pelayanan perusahaan.
+                    </p>
+                </div>
+                <div class="col-md-6 image-content">
+                    <img src="<?= base_url(); ?>/assets/img/pict-satu.jpg" alt="PLN Icon Plus Image">
+                </div>
+            </div>
+
+            <!-- Second Section -->
+            <div class="row content-section align-items-center">
+                <div class="col-md-6 image-content">
+                    <img src="<?= base_url(); ?>/assets/img/pict-dua.jpg" alt="PLN Icon Plus Transformation">
+                </div>
+                <div class="col-md-6">
+                    <p>Transformasi PLN Icon Plus dari penyedia jaringan komunikasi menjadi penyedia solusi ICT
+                        merupakan
+                        langkah yang diambil untuk menjawab tantangan era globalisasi saat ini, dan menjadi jawaban atas
+                        semua permasalahan ICT bagi industri yang membutuhkan konektivitas dan solusi ICT yang handal di
+                        seluruh pelosok Nusantara. Komitmen PLN Icon Plus ini didukung oleh jaringan full fiber optic
+                        dengan
+                        memanfaatkan aset strategis PLN (ROW) serta sumber daya manusia yang sangat kompeten di
+                        bidangnya,
+                        menjadikan PLN Icon Plus sebagai penyedia ICT yang terpercaya.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- End Tentang Kami -->
+
         <!-- Fasilitas Section -->
-        <section id="portofolio" class="py-5">
+        <section id="portofolio" class="py-5 bg-light">
             <div class="container">
                 <div class="text-center mb-5">
-                    <h2 class="text-primary">Paket Layanan WiFi Iconnet</h2>
-                    <p class="text-muted">Pilih paket yang sesuai untuk mendukung kenyamanan dan kelancaran internet
-                        Anda.</p>
+                    <h2 class="text-primary">Fasilitas Paket Layanan WiFi</h2>
+                    <p class="text-muted">Kami menyediakan paket internet untuk mendukung kenyamanan dan kelancaran
+                        anda.
+                    </p>
                 </div>
                 <div class="row">
                     <!-- Paket Iconnet 10 -->
@@ -172,29 +238,6 @@
         </section>
         <!-- End OF Section -->
 
-        <!-- Team Section -->
-        <section id="tim" class="py-5 bg-light">
-            <div class="container">
-                <div class="text-center mb-5">
-                    <h2 class="text-primary">Team Develop</h2>
-                </div>
-                <div class="row justify-content-center">
-                    <!-- Team Member -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card text-center shadow-sm">
-                            <img src="<?= base_url(); ?>/assets/img/pdh-tito.jpg" class="card-img-top"
-                                alt="Team Member">
-                            <div class="card-body">
-                                <h5 class="card-title">Tito Wibowo Risky</h5>
-                                <p class="card-text">FullStack Developer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add more team members here if needed -->
-                </div>
-            </div>
-        </section>
-        <!-- End Team Section -->
 
         <!-- Contact Section -->
         <section id="kontak" class="py-5 bg-light">
@@ -293,9 +336,9 @@
 
 
         <!-- Footer -->
-        <footer class="text-center bg-light text-dark py-4 mt-4">
+        <footer class="text-center bg-light text-dark py-4">
             <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Udinus Semarang - <?= date('Y'); ?></span>
+                <span>Copyright &copy; Universitas Dian Nuswantoro - <?= date('Y'); ?></span>
             </div>
         </footer>
 
@@ -308,6 +351,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

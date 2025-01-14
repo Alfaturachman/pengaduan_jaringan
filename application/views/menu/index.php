@@ -8,21 +8,21 @@
 
             <!-- welcome message -->
             <?php if ($this->session->flashdata('message')) : ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    Selamat datang <strong><?= $this->session->flashdata('message'); ?></strong>
-                </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Selamat datang <strong><?= $this->session->flashdata('message'); ?></strong>
+            </div>
             <?php endif; ?>
 
             <?php if ($this->session->flashdata('msg')) : ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    Data berhasil <strong><?= $this->session->flashdata('msg'); ?></strong>
-                </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Data berhasil <strong><?= $this->session->flashdata('msg'); ?></strong>
+            </div>
             <?php endif; ?>
 
             <!-- page heading - judul -->
@@ -115,10 +115,10 @@
                             <td>Ubah Status</td>
                             <td>
                                 <select name="status_pengaduan" id="status" class="form-control" required>
-                                    <option value=""> -- PILIH STATUS TERBARU -- </option>
+                                    <option value=""> -- UBAH STATUS -- </option>
                                     <option value="0">Antrian</option>
                                     <option value="1">Proses</option>
-                                    <option value="2">Selesai</option>
+                                    <!-- <option value="2">Selesai</option> -->
                                     <option value="3">Batal</option>
                                 </select>
                             </td>
@@ -189,63 +189,63 @@
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
-        // DataTables - ebook
-        dataTables_pengaduan();
+    // DataTables - ebook
+    dataTables_pengaduan();
 
-        function dataTables_pengaduan() {
-            $('#table-pengaduan').DataTable({
-                responsive: true,
-                "destroy": true,
-                "processing": true,
-                "serverSide": true,
-                "order": [],
+    function dataTables_pengaduan() {
+        $('#table-pengaduan').DataTable({
+            responsive: true,
+            "destroy": true,
+            "processing": true,
+            "serverSide": true,
+            "order": [],
 
-                "columnDefs": [{
-                    "targets": [0, 4],
-                    "orderable": false
-                }],
-                scrollY: "300px",
-                scrollX: true,
-                // scrollCollapse: false,
-                // paging: true,
+            "columnDefs": [{
+                "targets": [0, 4],
+                "orderable": false
+            }],
+            scrollY: "300px",
+            scrollX: true,
+            // scrollCollapse: false,
+            // paging: true,
 
-                "lengthMenu": [
-                    [5, 10, 30, 50, -1],
-                    [5, 10, 30, 50, "All"]
-                ],
+            "lengthMenu": [
+                [5, 10, 30, 50, -1],
+                [5, 10, 30, 50, "All"]
+            ],
 
-                "ajax": {
-                    "url": "<?= base_url('menu/read_data') ?>",
-                    "type": "POST"
-                },
+            "ajax": {
+                "url": "<?= base_url('menu/read_data') ?>",
+                "type": "POST"
+            },
 
-            })
-        }
-
-        // var table = $('#table-pengaduan').DataTable()
-        // table.columns([4]).visible(false);
-
-        // Modal Box - Pengaduan
-        $(document).on("click", ".btn-hapus", function() {
-            let status = $(this).data('status')
-            status == 0 ? status = 'antrian' : (status == 1 ? status = 'proses' : (status == 2 ? status =
-                'selesai' : status = 'gagal'))
-
-            $(".modal-body #id_pengaduan").val($(this).data('id'))
-            $(".modal-body table .tgl").html($(this).data('tgl'))
-            $(".modal-body table .instansi").html($(this).data('instansi'))
-            $(".modal-body table .judul").html($(this).data('judul'))
-            $(".modal-body table .isi").html($(this).data('isi'))
-            $(".modal-body table .status").html(status)
         })
+    }
 
-        $(document).on("click", ".btn-hapus", function() {
-            $(".modal-body #id").val($(this).data('id'))
-        })
+    // var table = $('#table-pengaduan').DataTable()
+    // table.columns([4]).visible(false);
 
-    });
+    // Modal Box - Pengaduan
+    $(document).on("click", ".btn-hapus", function() {
+        let status = $(this).data('status')
+        status == 0 ? status = 'antrian' : (status == 1 ? status = 'proses' : (status == 2 ? status =
+            'selesai' : status = 'gagal'))
+
+        $(".modal-body #id_pengaduan").val($(this).data('id'))
+        $(".modal-body table .tgl").html($(this).data('tgl'))
+        $(".modal-body table .instansi").html($(this).data('instansi'))
+        $(".modal-body table .judul").html($(this).data('judul'))
+        $(".modal-body table .isi").html($(this).data('isi'))
+        $(".modal-body table .status").html(status)
+    })
+
+    $(document).on("click", ".btn-hapus", function() {
+        $(".modal-body #id").val($(this).data('id'))
+    })
+
+});
 </script>
 
 </body>

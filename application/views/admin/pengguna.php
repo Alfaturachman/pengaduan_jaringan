@@ -8,12 +8,12 @@
 
             <!-- cek session -->
             <?php if ($this->session->flashdata('msg')) : ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    Data berhasil <strong><?= $this->session->flashdata('msg'); ?></strong>
-                </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Data berhasil <strong><?= $this->session->flashdata('msg'); ?></strong>
+            </div>
             <?php endif; ?>
 
             <!-- page heading - judul -->
@@ -42,26 +42,26 @@
                             </thead>
                             <tbody>
                                 <?php if (empty($pengguna)) : ?>
-                                    <tr>
-                                        <td colspan="7">
-                                            <h3>Belum ada data!</h3>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="7">
+                                        <h3>Belum ada data!</h3>
+                                    </td>
+                                </tr>
                                 <?php else : ?>
-                                    <?php foreach ($pengguna as $num => $p) : ?>
-                                        <tr>
-                                            <td><?= $num + 1; ?></td>
-                                            <td><?= $p['nama_instansi']; ?></td>
-                                            <td><?= $p['email']; ?></td>
-                                            <td><?= $p['alamat']; ?></td>
-                                            <td><?= $p['username']; ?></td>
-                                            <td>
-                                                <a href="" data-toggle="modal" data-target="#modalHapus"
-                                                    class="btn btn-sm btn-danger" id="hapus-pengguna"
-                                                    data-id="<?= $p['id']; ?>">hapus</a>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                <?php foreach ($pengguna as $num => $p) : ?>
+                                <tr>
+                                    <td><?= $num + 1; ?></td>
+                                    <td><?= $p['nama_instansi']; ?></td>
+                                    <td><?= $p['email']; ?></td>
+                                    <td><?= $p['alamat']; ?></td>
+                                    <td><?= $p['username']; ?></td>
+                                    <td>
+                                        <a href="" data-toggle="modal" data-target="#modalHapus"
+                                            class="btn btn-sm btn-danger" id="hapus-pengguna"
+                                            data-id="<?= $p['id']; ?>">hapus</a>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
                                 <?php endif; ?>
                             </tbody>
                         </table>
@@ -80,7 +80,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Udinus Semarang - <?= date('Y'); ?></span>
+            <span>Copyright &copy; Universitas Dian Nuswantoro Semarang - <?= date('Y'); ?></span>
         </div>
     </div>
 </footer>
@@ -132,16 +132,16 @@
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        /*
-            saat user klik tombol hapus dengan id (#hapus-pengguna),
-            isi value dari field yang memiliki class (modal-body) id (id),
-            dengan value dari attribute data-id
-        */
-        $(document).on("click", "#hapus-pengguna", function() {
-            $(".modal-body #id").val($(this).data('id'));
-        });
+$(document).ready(function() {
+    /*
+        saat user klik tombol hapus dengan id (#hapus-pengguna),
+        isi value dari field yang memiliki class (modal-body) id (id),
+        dengan value dari attribute data-id
+    */
+    $(document).on("click", "#hapus-pengguna", function() {
+        $(".modal-body #id").val($(this).data('id'));
     });
+});
 </script>
 
 </body>

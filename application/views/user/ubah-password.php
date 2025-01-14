@@ -7,11 +7,11 @@
 
             <!-- Flash data -->
             <?php if ($this->session->flashdata('msg')) : ?>
-                <div class="alert alert-danger"><?= $this->session->flashdata('msg'); ?> </div>
+            <div class="alert alert-danger"><?= $this->session->flashdata('msg'); ?> </div>
             <?php endif; ?>
 
             <?php if ($this->session->flashdata('ubahpass')) : ?>
-                <?= $this->session->flashdata('ubahpass'); ?>
+            <?= $this->session->flashdata('ubahpass'); ?>
             <?php endif; ?>
 
             <div class="card shadow-sm">
@@ -25,7 +25,9 @@
 
                     <div class="form-group">
                         <label for="password">Password Lama</label>
-                        <input type="password" name="password" id="password" class="form-control shadow-sm <?= form_error('password') ? 'is-invalid' : 'border-left-primary' ?>" value="<?= set_value('password'); ?>">
+                        <input type="password" name="password" id="password"
+                            class="form-control shadow-sm <?= form_error('password') ? 'is-invalid' : 'border-left-primary' ?>"
+                            value="<?= set_value('password'); ?>">
                         <div class="invalid-feedback">
                             <?= form_error('password') ?>
                         </div>
@@ -33,7 +35,9 @@
 
                     <div class="form-group">
                         <label for="newpass">Password Baru</label>
-                        <input type="password" name="newpass" id="newpass" class="form-control shadow-sm <?= form_error('newpass') ? 'is-invalid' : 'border-left-primary' ?>" value="<?= set_value('newpass'); ?>">
+                        <input type="password" name="newpass" id="newpass"
+                            class="form-control shadow-sm <?= form_error('newpass') ? 'is-invalid' : 'border-left-primary' ?>"
+                            value="<?= set_value('newpass'); ?>">
                         <div class="invalid-feedback">
                             <?= form_error('newpass') ?>
                         </div>
@@ -41,7 +45,8 @@
 
                     <div class="form-group">
                         <label for="newpass2">Konfirmasi Password</label>
-                        <input type="password" name="newpass2" id="newpass2" class="form-control shadow-sm <?= form_error('newpass2') ? 'is-invalid' : 'border-left-primary' ?>">
+                        <input type="password" name="newpass2" id="newpass2"
+                            class="form-control shadow-sm <?= form_error('newpass2') ? 'is-invalid' : 'border-left-primary' ?>">
                         <div class="invalid-feedback">
                             <?= form_error('newpass2') ?>
                         </div>
@@ -67,7 +72,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Tito Wibowo Risky - <?= date('Y'); ?></span>
+            <span>Copyright &copy; Universitas Dian Nuswantoro Semarang - <?= date('Y'); ?></span>
         </div>
     </div>
 </footer>
