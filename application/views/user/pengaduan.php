@@ -7,21 +7,21 @@
         <div class="col-12">
 
             <?php if ($this->session->flashdata('msg')) : ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    Data berhasil <strong><?= $this->session->flashdata('msg'); ?></strong>
-                </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Data berhasil <strong><?= $this->session->flashdata('msg'); ?></strong>
+            </div>
             <?php endif; ?>
 
             <?php if ($this->session->flashdata('err')) : ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    Gagal! Status pengaduan sudah <strong><?= $this->session->flashdata('err'); ?></strong>
-                </div>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Gagal! Status pengaduan sudah <strong><?= $this->session->flashdata('err'); ?></strong>
+            </div>
             <?php endif; ?>
 
             <!-- page heading - judul -->
@@ -52,23 +52,23 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($data as $num => $row) : ?>
-                                    <tr>
-                                        <td>
-                                            <?php if ($row['status_pengaduan'] == 0) : ?>
-                                                <input type="checkbox" data-id="<?= $row['id'] ?>"
-                                                    data-judul="<?= $row['judul_pengaduan'] ?>"
-                                                    data-isi="<?= $row['isi_pengaduan'] ?>">
-                                            <?php else : ?>
-                                                <span><i class="fa fa-check"></i></span>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td><?= $num + 1; ?></td>
-                                        <td><?= $row['judul_pengaduan']; ?></td>
-                                        <td class="text-justify"><?= $row['isi_pengaduan']; ?></td>
-                                        <td class="status">
-                                            <?= $row['status_pengaduan'] == 0 ? '<span class="badge-warning p-1 rounded-sm">antrian</span>' : ($row['status_pengaduan'] == 1 ? '<span class="badge-blue p-1 rounded-sm">proses</span>' : ($row['status_pengaduan'] == 2 ? '<span class="badge-success p-1 rounded-sm">selesai</span>' : '<span class="badge-danger p-1 rounded-sm">batal</span>')) ?>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>
+                                        <?php if ($row['status_pengaduan'] == 0) : ?>
+                                        <input type="checkbox" data-id="<?= $row['id'] ?>"
+                                            data-judul="<?= $row['judul_pengaduan'] ?>"
+                                            data-isi="<?= $row['isi_pengaduan'] ?>">
+                                        <?php else : ?>
+                                        <span><i class="fa fa-check"></i></span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?= $num + 1; ?></td>
+                                    <td><?= $row['judul_pengaduan']; ?></td>
+                                    <td class="text-justify"><?= $row['isi_pengaduan']; ?></td>
+                                    <td class="status">
+                                        <?= $row['status_pengaduan'] == 0 ? '<span class="badge-warning p-1 rounded-sm">antrian</span>' : ($row['status_pengaduan'] == 1 ? '<span class="badge-blue p-1 rounded-sm">proses</span>' : ($row['status_pengaduan'] == 2 ? '<span class="badge-success p-1 rounded-sm">selesai</span>' : '<span class="badge-danger p-1 rounded-sm">batal</span>')) ?>
+                                    </td>
+                                </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -91,7 +91,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Udinus Semarang - <?= date('Y'); ?></span>
+            <span>Copyright &copy; Universitas Dian Nuswantoro Semarang - <?= date('Y'); ?></span>
         </div>
     </div>
 </footer>
@@ -150,26 +150,26 @@
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
-        $('.btn-ubah').click(function(e) {
-            e.preventDefault()
+    $('.btn-ubah').click(function(e) {
+        e.preventDefault()
 
-            // Jumlah yang di check
-            var cbLen = $('input[type="checkbox"]:checked').length;
-            var cb = $('input[type="checkbox"]:checked');
+        // Jumlah yang di check
+        var cbLen = $('input[type="checkbox"]:checked').length;
+        var cb = $('input[type="checkbox"]:checked');
 
-            if (cbLen != 1) {
-                alert('Pilih salah satu data yang ingin diubah')
-            } else {
-                $('#modal-ubah').modal()
-                $('.modal-body #id').val(cb.data('id'))
-                $('.modal-body #judul').val(cb.data('judul'))
-                $('.modal-body #isi').val(cb.data('isi'))
-            }
-        })
-
+        if (cbLen != 1) {
+            alert('Pilih salah satu data yang ingin diubah')
+        } else {
+            $('#modal-ubah').modal()
+            $('.modal-body #id').val(cb.data('id'))
+            $('.modal-body #judul').val(cb.data('judul'))
+            $('.modal-body #isi').val(cb.data('isi'))
+        }
     })
+
+})
 </script>
 
 </body>

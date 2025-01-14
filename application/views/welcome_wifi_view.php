@@ -338,7 +338,7 @@
         <!-- Footer -->
         <footer class="text-center bg-light text-dark py-4">
             <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Udinus Semarang - <?= date('Y'); ?></span>
+                <span>Copyright &copy; Universitas Dian Nuswantoro - <?= date('Y'); ?></span>
             </div>
         </footer>
 

@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= $judul; ?></h1>
+    <h1 class="h3 mb-4 text-gray-800"><i class="fas fa-fw fa-briefcase"></i> <?= $judul; ?></h1>
 
     <!-- Tabel Daftar Tugas -->
     <div class="card shadow mb-4">
@@ -66,8 +66,25 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Universitas Dian Nuswantoro Semarang - <?= date('Y'); ?></span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+<!-- Bootstrap core JavaScript-->
+<script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
+<script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
 <!-- Modal Box - Detail Pengaduan -->
 <div class="modal fade" id="detail-pengaduan" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
@@ -112,7 +129,7 @@
                             <td>Ubah Status</td>
                             <td>
                                 <select name="status_pengaduan" id="status_select" class="form-control" required>
-                                    <option value=""> -- PILIH STATUS TERBARU -- </option>
+                                    <option value=""> -- UBAH STATUS -- </option>
                                     <option value="0">Antrian</option>
                                     <option value="1">Proses</option>
                                     <option value="2">Selesai</option>
@@ -126,7 +143,7 @@
                                     placeholder="Masukkan keterangan tambahan (jika ada)"></textarea></td>
                         </tr>
                         <tr>
-                            <td>Upload File</td>
+                            <td>Upload Foto</td>
                             <td>
                                 <input type="file" name="file_pengaduan" class="form-control" id="file_input"
                                     onchange="previewFile()">
@@ -138,7 +155,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-primary">Ubah Status Pengaduan</button>
                 </div>
             </form>
@@ -224,3 +241,6 @@ function previewFile() {
     }
 }
 </script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script> -->

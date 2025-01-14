@@ -7,13 +7,13 @@
         <div class="col-12">
 
             <?php if ($this->session->flashdata('msg')) : ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    Keluhan anda berhasil di <strong><?= $this->session->flashdata('msg'); ?></strong> Silahkan menunggu
-                    proses selanjutnya oleh tim terkait, terima kasih.
-                </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Keluhan anda berhasil di <strong><?= $this->session->flashdata('msg'); ?></strong> Silahkan menunggu
+                proses selanjutnya oleh tim terkait, terima kasih.
+            </div>
             <?php endif; ?>
 
         </div>
@@ -74,21 +74,30 @@ For IE support of object-fit add this to your document
                     <label for="judul_pengaduan">Judul Keluhan</label>
                     <select name="judul_pengaduan" class="form-control" id="judul_pengaduan">
                         <option value="" selected disabled>Pilih Judul Keluhan</option>
-                        <option value="keluhan koneksi Wifi tidak stabil">Keluhan Koneksi WiFi yang Tidak Stabil dan Sering Putus</option>
+                        <option value="keluhan koneksi Wifi tidak stabil">Keluhan Koneksi WiFi yang Tidak Stabil dan
+                            Sering Putus</option>
                         <option value="kecepatan wifi yang lambat">Kekecewaan atas Kecepatan WiFi yang Lambat</option>
-                        <option value="Kesulitan Mengakses Internet">Kesulitan Mengakses Internet Akibat Koneksi WiFi yang Tidak Stabil</option>
+                        <option value="Kesulitan Mengakses Internet">Kesulitan Mengakses Internet Akibat Koneksi WiFi
+                            yang Tidak Stabil</option>
                         <option value="Masalah WiFi Lemah di Area Tertentu">Masalah WiFi Lemah di Area Tertentu</option>
+                        <option value="Kecepatan WiFi Tidak Sesuai dengan Paket">Kecepatan internet yang saya dapatkan
+                            jauh lebih lambat
+                        </option>
+                        <option value="Masalah Router yang Sering Error">Router WiFi saya sering error dan harus
+                            di-restart berkali-kali</option>
                     </select>
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-group">
                     <label for="isi_pengaduan">Isi Keluhan</label>
-                    <textarea name="isi_pengaduan" class="form-control" id="isi_pengaduan" cols="30" rows="3" placeholder="Masukkan Isi Keluhan"></textarea>
+                    <textarea name="isi_pengaduan" class="form-control" id="isi_pengaduan" cols="30" rows="3"
+                        placeholder="Masukkan Isi Keluhan"></textarea>
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-group">
                     <label for="alamat">Alamat</label>
-                    <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="3" placeholder="Masukkan Alamat"></textarea>
+                    <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="3"
+                        placeholder="Masukkan Alamat"></textarea>
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-group">
@@ -110,7 +119,7 @@ For IE support of object-fit add this to your document
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Udinus Semarang - <?= date('Y'); ?></span>
+            <span>Copyright &copy; Universitas Dian Nuswantoro Semarang - <?= date('Y'); ?></span>
         </div>
     </div>
 </footer>
@@ -147,38 +156,38 @@ For IE support of object-fit add this to your document
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        $("#formTambahData").submit(function(e) {
-            e.preventDefault()
+$(document).ready(function() {
+    $("#formTambahData").submit(function(e) {
+        e.preventDefault()
 
-            var form = $("#formTambahData")
-            var data = $(this).serialize()
+        var form = $("#formTambahData")
+        var data = $(this).serialize()
 
-            $.ajax({
-                url: form.attr('action'),
-                type: form.attr('method'),
-                dataType: 'json',
-                data: data,
-                success: function(res) {
-                    // jika respon -> status = true
-                    if (res.status) {
-                        $('#tambah-data').modal('toggle')
-                        location.reload()
-                        // jika respon -> status = false
-                    } else {
-                        $.each(res.errors, function(key, value) {
-                            $('[name="' + key + '"]').addClass('is-invalid');
-                            $('[name="' + key + '"]').next().text(value);
-                            if (value == "") {
-                                $('[name="' + key + '"]').removeClass('is-invalid');
-                                $('[name="' + key + '"]').addClass('is-valid');
-                            }
-                        })
-                    }
+        $.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            dataType: 'json',
+            data: data,
+            success: function(res) {
+                // jika respon -> status = true
+                if (res.status) {
+                    $('#tambah-data').modal('toggle')
+                    location.reload()
+                    // jika respon -> status = false
+                } else {
+                    $.each(res.errors, function(key, value) {
+                        $('[name="' + key + '"]').addClass('is-invalid');
+                        $('[name="' + key + '"]').next().text(value);
+                        if (value == "") {
+                            $('[name="' + key + '"]').removeClass('is-invalid');
+                            $('[name="' + key + '"]').addClass('is-valid');
+                        }
+                    })
                 }
-            })
+            }
         })
     })
+})
 </script>
 
 </body>

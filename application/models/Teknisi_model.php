@@ -65,7 +65,7 @@ class Teknisi_model extends CI_Model
      * Mendapatkan detail tugas berdasarkan ID tugas
      * @param int $id_tugas
      * @return array|null
-     */
+     */ 
     public function getDetailTugas($id_tugas)
     {
         // Validasi ID tugas
