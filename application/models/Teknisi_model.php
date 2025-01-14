@@ -10,6 +10,10 @@ class Teknisi_model extends CI_Model
      */
     public function getTugasTeknisi()
     {
+        // Ambil user_id dari session
+        $user_id = $this->session->userdata('id_user'); // Pastikan 'user_id' ada dalam session
+
+        // Select data tugas pengaduan yang terkait dengan teknisi
         $this->db->select('
         pengaduan.id, 
         pengaduan.judul_pengaduan, 
@@ -22,6 +26,10 @@ class Teknisi_model extends CI_Model
     ');
         $this->db->from('pengaduan');
         $this->db->join('user', 'pengaduan.instansi_id = user.id', 'left');
+
+        // Tambahkan filter berdasarkan user_id (ID teknisi)
+        $this->db->where('pengaduan.id_user', $user_id);
+
         $this->db->order_by('pengaduan.tgl_pengaduan', 'DESC');
 
         return $this->db->get()->result_array();
@@ -65,7 +73,7 @@ class Teknisi_model extends CI_Model
      * Mendapatkan detail tugas berdasarkan ID tugas
      * @param int $id_tugas
      * @return array|null
-     */ 
+     */
     public function getDetailTugas($id_tugas)
     {
         // Validasi ID tugas

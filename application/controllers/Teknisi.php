@@ -21,7 +21,7 @@ class Teknisi extends CI_Controller
     // Teknisi: Daftar Tugas
     public function daftar_tugas()
     {
-        is_teknisi(); // Middleware untuk memeriksa apakah user adalah teknisi
+        is_teknisi();
         $data = [
             'judul' => 'Daftar Tugas Teknisi',
             'user' => $this->user,

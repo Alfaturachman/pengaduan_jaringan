@@ -14,8 +14,12 @@ class Menu extends CI_Controller
     public function index()
     {
         is_user();
+
+        $teknisi = $this->model->get_teknisi();
+
         $data = [
             'judul' => 'Data Pengaduan',
+            'teknisi' => $teknisi,
             'user' => $this->user
         ];
 
@@ -37,13 +41,15 @@ class Menu extends CI_Controller
 
                 // tombol action
                 $btnAction = "<button type=\"button\" data-toggle=\"modal\" data-target=\"#detail-pengaduan\" class='btn btn-sm btn-info btn-hapus' data-id=\"$field->id\" data-tgl=\"" . date('d F Y H:i:s', strtotime($field->tgl_pengaduan)) . "\" data-instansi=\"$field->nama_instansi\" data-judul=\"$field->judul_pengaduan\" data-isi=\"$field->isi_pengaduan\" data-status=\"$field->status_pengaduan\"><i class=\"fas fa-fw fa-edit\"></i> Detail</button>
-            <button type=\"button\" data-toggle=\"modal\" data-target=\"#hapus-pengaduan\" class='btn btn-sm btn-danger btn-hapus' data-id=\"$field->id\"><i class=\"fas fa-fw fa-trash-alt\"></i> Hapus</button>";
+                <button type=\"button\" data-toggle=\"modal\" data-target=\"#hapus-pengaduan\" class='btn btn-sm btn-danger btn-hapus' data-id=\"$field->id\"><i class=\"fas fa-fw fa-trash-alt\"></i> Hapus</button>";
 
+                // Menentukan status pengaduan
                 $status = $field->status_pengaduan;
-
                 $tanggalJam = date('d M Y H:i', strtotime($field->tgl_pengaduan)) . ' WIB';
 
+                // Menambahkan data ke row
                 $row[] = $no;
+                $row[] = $field->id_pelanggan;  // Menampilkan ID Pelanggan
                 $row[] = $tanggalJam; // Menampilkan tanggal dan jam
                 $row[] = $field->nama_instansi;
                 $row[] = ($status == 0 ? '<span class="badge-warning p-1 rounded-sm">antrian</span>' : ($status == 1 ? '<span class="badge-blue p-1 rounded-sm">proses</span>' : ($status == 2 ? '<span class="badge-success p-1 rounded-sm">selesai</span>' : '<span class="badge-danger p-1 rounded-sm">batal</span>')));
@@ -57,7 +63,8 @@ class Menu extends CI_Controller
                 "recordsFiltered" => $this->model->count_filtered(),
                 "data" => $data,
             ];
-            //output dalam format JSON
+
+            // output dalam format JSON
             echo json_encode($output);
         } else {
             exit('Maaf data tidak bisa ditampilkan');
@@ -66,8 +73,29 @@ class Menu extends CI_Controller
 
     public function ubah_status()
     {
-        $this->model->ubahStatusPengaduan();
-        $this->session->set_flashdata('msg', 'Status Pengaduan berhasil diubah.');
+        // Cek apakah user terautentikasi
+        is_user();
+
+        // Ambil data yang dikirim dari form
+        $id_pengaduan = $this->input->post('id');
+        $id_user = $this->input->post('id_user');
+        $daerah_semarang = $this->input->post('daerah_semarang');
+
+        $this->form_validation->set_rules('daerah_semarang', 'Daerah Semarang', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Data tidak valid.');
+            redirect('data-pengaduan');
+        }
+
+        $update_data = [
+            'daerah_pengaduan' => $daerah_semarang,
+            'id_user' => $id_user,
+        ];
+
+        $this->model->update_pengaduan($id_pengaduan, $update_data);
+
+        $this->session->set_flashdata('success', 'Data pengaduan berhasil diubah.');
         redirect('data-pengaduan');
     }
 

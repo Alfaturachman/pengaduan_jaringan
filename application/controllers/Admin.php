@@ -32,15 +32,6 @@ class Admin extends CI_Controller
 
     public function tambah_pengguna()
     {
-        /*
-            Validasi field {
-                required => semua field harus diisi
-                is_unique => field harus unik (tidak boleh sama)
-                min_length => minimal panjang karakter
-                matches => harus sama
-                email => harus memakai @provider.com
-            }
-        */
         $this->form_validation->set_rules('nama_instansi', 'Nama Instansi', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
@@ -55,27 +46,33 @@ class Admin extends CI_Controller
                 'user' => $this->user
             ];
 
-            $this->templating->load('admin/tambah-pengguna', $data);
-            // jika lolos validasi
+            $this->templating->load('admin/tambah', $data);
         } else {
-            // tambah data ke database
-            $this->model->tambah_pengguna();
+            // Ambil data dari form
+            $data = [
+                'nama_instansi' => $this->input->post('nama_instansi'),
+                'email' => $this->input->post('email'),
+                'alamat' => $this->input->post('alamat'),
+                'username' => $this->input->post('username'),
+                'password' => password_hash($this->input->post('pass1'), PASSWORD_DEFAULT),
+                'role_id' => 3,
+            ];
+
+            // Insert ke database
+            $this->db->insert('user', $data);
+            $this->session->set_flashdata('msg', 'Pengguna baru berhasil ditambahkan!');
+            redirect('data-pengguna');
         }
     }
 
     public function hapus_pengguna()
     {
-        // tangkap id
         $id = $this->input->post('id');
-        // Hapus data dari tabel user, dimana id user sesuai dengan yang dikirimkan
-        // Hapus semua pengaduan dari data user yang dihapus
         $this->db->where('id', $id);
         $this->db->delete('user');
         $this->db->where('instansi_id', $id);
         $this->db->delete('pengaduan');
-        // set session -> berhasil menghapus data
         $this->session->set_flashdata('msg', 'dihapus.');
-        // redirect ke halaman pengguna
         redirect('data-pengguna');
     }
 }

@@ -5,8 +5,7 @@ class Admin_model extends CI_Model
 {
     public function getPengguna()
     {
-        // menggunankan where !=1 -> untuk menampilkan user saja (tidak termasuk admin)
-        return $this->db->get_where('user', 'user.role_id !=1')->result_array();
+        return $this->db->get_where('user', ['role_id' => 3])->result_array();
     }
 
     public function tambah_pengguna()

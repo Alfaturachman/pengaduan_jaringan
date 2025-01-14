@@ -13,6 +13,13 @@ class User_model extends CI_Model
         return $this->db->get_where('pengaduan', ['instansi_id' => $this->user['id']])->result_array();
     }
 
+    public function is_id_pelanggan_exist($id_pelanggan)
+    {
+        $this->db->where('id_pelanggan', $id_pelanggan);
+        $query = $this->db->get('pengaduan');
+        return $query->num_rows() > 0;
+    }
+
     public function ubah_data()
     {
         $id = $this->input->post('id');
@@ -40,6 +47,7 @@ class User_model extends CI_Model
         $data = [
             'instansi_id' => $this->user['id'],
             'tgl_pengaduan' => date('Y-m-d H:i:s'),
+            'id_pelanggan' => htmlspecialchars($this->input->post('id_pelanggan', true)),
             'judul_pengaduan' => htmlspecialchars($this->input->post('judul_pengaduan', true)),
             'isi_pengaduan' => htmlspecialchars($this->input->post('isi_pengaduan', true)),
             'alamat_pengaduan' => htmlspecialchars($this->input->post('alamat', true)),

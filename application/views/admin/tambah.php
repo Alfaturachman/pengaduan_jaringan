@@ -9,9 +9,7 @@
                     Data berhasil <strong><?= $this->session->flashdata('msg'); ?></strong>
                 </div>
             <?php endif; ?>
-
             <h1 class="h3 my-1 text-gray-800"><i class="fa fa-fw fa-users"></i> <?= $judul; ?></h1>
-            <a href="<?= base_url('tambah-pengguna'); ?>" class="btn btn-sm btn-primary">Tambah Teknisi</a>
         </div>
     </div>
 
@@ -19,44 +17,45 @@
         <div class="col">
             <div class="card mt-4">
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped" style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Nama Pelanggan</th>
-                                    <th>Email</th>
-                                    <th>Alamat</th>
-                                    <th>Username</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (empty($pengguna)) : ?>
-                                    <tr>
-                                        <td colspan="7">
-                                            <h3>Belum ada data!</h3>
-                                        </td>
-                                    </tr>
-                                <?php else : ?>
-                                    <?php foreach ($pengguna as $num => $p) : ?>
-                                        <tr>
-                                            <td><?= $num + 1; ?></td>
-                                            <td><?= $p['nama_instansi']; ?></td>
-                                            <td><?= $p['email']; ?></td>
-                                            <td><?= $p['alamat']; ?></td>
-                                            <td><?= $p['username']; ?></td>
-                                            <td>
-                                                <a href="" data-toggle="modal" data-target="#modalHapus"
-                                                    class="btn btn-sm btn-danger" id="hapus-pengguna"
-                                                    data-id="<?= $p['id']; ?>">hapus</a>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
+                    <form action="<?= base_url('admin/tambah_pengguna') ?>" method="POST">
+                        <div class="form-group">
+                            <label for="nama_instansi">Nama Instansi</label>
+                            <input type="text" class="form-control" id="nama_instansi" name="nama_instansi" value="<?= set_value('nama_instansi') ?>" required>
+                            <?= form_error('nama_instansi', '<small class="text-danger">', '</small>') ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="<?= set_value('email') ?>" required>
+                            <?= form_error('email', '<small class="text-danger">', '</small>') ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <textarea class="form-control" id="alamat" name="alamat" required><?= set_value('alamat') ?></textarea>
+                            <?= form_error('alamat', '<small class="text-danger">', '</small>') ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" value="<?= set_value('username') ?>" required>
+                            <?= form_error('username', '<small class="text-danger">', '</small>') ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pass1">Password</label>
+                            <input type="password" class="form-control" id="pass1" name="pass1" required>
+                            <?= form_error('pass1', '<small class="text-danger">', '</small>') ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pass2">Konfirmasi Password</label>
+                            <input type="password" class="form-control" id="pass2" name="pass2" required>
+                            <?= form_error('pass2', '<small class="text-danger">', '</small>') ?>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Tambah Pengguna</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -101,7 +101,7 @@ class Menu_model extends CI_Model
                 // Menyimpan informasi file di tabel teknisi_upload
                 $uploadData = [
                     'id_pengaduan' => $id,
-                    'keterangan' => $keterangan, 
+                    'keterangan' => $keterangan,
                     'file_pengaduan' => $file_name
                 ];
 
@@ -113,7 +113,7 @@ class Menu_model extends CI_Model
                 redirect('teknisi/ubah_status');
             }
         }
-        
+
         // Set flashdata untuk pemberitahuan
         $this->session->set_flashdata('msg', 'Status Pengaduan berhasil diubah dan terkirim ke teknisi.');
     }
@@ -125,9 +125,25 @@ class Menu_model extends CI_Model
     //     redirect('daftar_tugas');
     // }
 
+    public function update_pengaduan($id_pengaduan, $update_data)
+    {
+        $this->db->where('id', $id_pengaduan);
+        return $this->db->update('pengaduan', $update_data);
+    }
+
     public function getNamaInstansi()
     {
         return $this->db->get_where('user', 'user.role_id != 1')->result_array();
+    }
+
+    public function get_teknisi()
+    {
+        $this->db->select('id, nama_instansi');
+        $this->db->from('user');
+        $this->db->where('role_id', 3);
+        $query = $this->db->get();
+
+        return $query->result_array();
     }
 
     public function getPengaduanByDate($mulai, $selesai, $filter = false)

@@ -71,6 +71,11 @@ For IE support of object-fit add this to your document
             <?= form_open('user/tambah_data_aksi', ['id' => 'formTambahData']); ?>
             <div class="modal-body">
                 <div class="form-group">
+                    <label for="id_pelanggan">ID Pelanggan</label>
+                    <input type="text" name="id_pelanggan" class="form-control" id="id_pelanggan" value="<?= htmlspecialchars($id_pelanggan); ?>" readonly>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group">
                     <label for="judul_pengaduan">Judul Keluhan</label>
                     <select name="judul_pengaduan" class="form-control" id="judul_pengaduan">
                         <option value="" selected disabled>Pilih Judul Keluhan</option>
