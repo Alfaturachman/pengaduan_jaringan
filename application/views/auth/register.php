@@ -12,7 +12,6 @@
 </head>
 
 <body class="bg-primary d-flex align-items-center justify-content-center" style="height: 100vh;">
-
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -20,7 +19,7 @@
                     <div class="card-body">
                         <h2 class="text-center mb-4">Register Akun</h2>
                         <?php if ($this->session->flashdata('message')) : ?>
-                        <?= $this->session->flashdata('message'); ?>
+                            <?= $this->session->flashdata('message'); ?>
                         <?php endif; ?>
                         <form class="user" method="post" action="<?= base_url('auth/register'); ?>">
                             <div class="form-group">

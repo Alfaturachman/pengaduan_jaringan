@@ -113,12 +113,6 @@ class Menu_model extends CI_Model
                 redirect('teknisi/ubah_status');
             }
         }
-
-        // Set flashdata untuk pemberitahuan
-        $this->session->set_flashdata('msg', 'Status Pengaduan berhasil diubah.');
-
-        // Redirect ke daftar_tugas
-        redirect('daftar_tugas');
     }
 
     public function getNamaInstansi()

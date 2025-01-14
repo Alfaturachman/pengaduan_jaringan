@@ -36,13 +36,15 @@ class Menu extends CI_Controller
                 $row = [];
 
                 // tombol action
-                $btnAction = "<button type=\"button\" data-toggle=\"modal\" data-target=\"#detail-pengaduan\" class='btn btn-sm btn-info btn-hapus' data-id=\"$field->id\" data-tgl=\"" . date('d F Y', strtotime($field->tgl_pengaduan)) . "\" data-instansi=\"$field->nama_instansi\" data-judul=\"$field->judul_pengaduan\" data-isi=\"$field->isi_pengaduan\" data-status=\"$field->status_pengaduan\"><i class=\"fas fa-fw fa-edit\"></i> Detail</button>
-                <button type=\"button\" data-toggle=\"modal\" data-target=\"#hapus-pengaduan\" class='btn btn-sm btn-danger btn-hapus' data-id=\"$field->id\"><i class=\"fas fa-fw fa-trash-alt\"></i> Hapus</button>";
+                $btnAction = "<button type=\"button\" data-toggle=\"modal\" data-target=\"#detail-pengaduan\" class='btn btn-sm btn-info btn-hapus' data-id=\"$field->id\" data-tgl=\"" . date('d F Y H:i:s', strtotime($field->tgl_pengaduan)) . "\" data-instansi=\"$field->nama_instansi\" data-judul=\"$field->judul_pengaduan\" data-isi=\"$field->isi_pengaduan\" data-status=\"$field->status_pengaduan\"><i class=\"fas fa-fw fa-edit\"></i> Detail</button>
+            <button type=\"button\" data-toggle=\"modal\" data-target=\"#hapus-pengaduan\" class='btn btn-sm btn-danger btn-hapus' data-id=\"$field->id\"><i class=\"fas fa-fw fa-trash-alt\"></i> Hapus</button>";
 
                 $status = $field->status_pengaduan;
 
+                $tanggalJam = date('d M Y H:i', strtotime($field->tgl_pengaduan)) . ' WIB';
+
                 $row[] = $no;
-                $row[] = date('d M Y', strtotime($field->tgl_pengaduan));
+                $row[] = $tanggalJam; // Menampilkan tanggal dan jam
                 $row[] = $field->nama_instansi;
                 $row[] = ($status == 0 ? '<span class="badge-warning p-1 rounded-sm">antrian</span>' : ($status == 1 ? '<span class="badge-blue p-1 rounded-sm">proses</span>' : ($status == 2 ? '<span class="badge-success p-1 rounded-sm">selesai</span>' : '<span class="badge-danger p-1 rounded-sm">batal</span>')));
                 $row[] = $btnAction;
@@ -65,6 +67,7 @@ class Menu extends CI_Controller
     public function ubah_status()
     {
         $this->model->ubahStatusPengaduan();
+        $this->session->set_flashdata('msg', 'Status Pengaduan berhasil diubah.');
         redirect('data-pengaduan');
     }
 
