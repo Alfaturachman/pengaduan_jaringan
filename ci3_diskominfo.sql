@@ -22,25 +22,29 @@ DROP TABLE IF EXISTS `pengaduan`;
 
 CREATE TABLE `pengaduan` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `id_pelanggan` varchar(12) NOT NULL,
+  `id_user` int DEFAULT NULL,
   `instansi_id` int NOT NULL,
   `tgl_pengaduan` datetime NOT NULL,
   `judul_pengaduan` varchar(255) NOT NULL,
   `isi_pengaduan` text NOT NULL,
   `no_telp_pengaduan` varchar(20) DEFAULT NULL,
   `alamat_pengaduan` text,
+  `daerah_pengaduan` varchar(25) DEFAULT NULL,
   `status_pengaduan` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pengaduan` */
 
-insert  into `pengaduan`(`id`,`instansi_id`,`tgl_pengaduan`,`judul_pengaduan`,`isi_pengaduan`,`no_telp_pengaduan`,`alamat_pengaduan`,`status_pengaduan`) values 
-(4,2,'2021-01-12 00:00:00','ubah pengaduan','tes ubah',NULL,NULL,2),
-(9,2,'2021-01-23 00:00:00','Coba tambah data pengaduan','berikut adalah isi dari pengaduan instansi saya, tolong di proses secepatnya. Terima kasih\r\n',NULL,NULL,2),
-(10,2,'2021-01-23 00:00:00','tes notif','notif baru uhuy',NULL,NULL,0),
-(12,6,'2024-12-28 00:00:00','keluhan koneksi Wifi tidak stabil','tttttttttttttttttttt',NULL,NULL,0),
-(30,6,'2024-12-30 15:15:12','kecepatan wifi yang lambat','REWTRWE','5463767','EWRTWRT',0),
-(31,6,'2024-12-30 15:15:32','Masalah WiFi Lemah di Area Tertentu','TWERT','54667','REWTWR',1);
+insert  into `pengaduan`(`id`,`id_pelanggan`,`id_user`,`instansi_id`,`tgl_pengaduan`,`judul_pengaduan`,`isi_pengaduan`,`no_telp_pengaduan`,`alamat_pengaduan`,`daerah_pengaduan`,`status_pengaduan`) values 
+(4,'7521680435',NULL,2,'2021-01-12 00:00:00','ubah pengaduan','tes ubah',NULL,NULL,NULL,2),
+(9,'7521680439',NULL,2,'2021-01-23 00:00:00','Coba tambah data pengaduan','berikut adalah isi dari pengaduan instansi saya, tolong di proses secepatnya. Terima kasih\r\n',NULL,NULL,NULL,2),
+(10,'7521680439',NULL,2,'2021-01-23 00:00:00','tes notif','notif baru uhuy',NULL,NULL,NULL,0),
+(12,'7521680439',NULL,6,'2024-12-28 00:00:00','keluhan koneksi Wifi tidak stabil','tttttttttttttttttttt',NULL,NULL,NULL,0),
+(30,'7521680439',2,6,'2024-12-30 15:15:12','kecepatan wifi yang lambat','REWTRWE','5463767','EWRTWRT','Semarang Tengah',0),
+(31,'7521680439',NULL,6,'2024-12-30 15:15:32','Masalah WiFi Lemah di Area Tertentu','TWERT','54667','REWTWR',NULL,1),
+(35,'7521680439',2,6,'2025-01-14 21:08:05','keluhan koneksi Wifi tidak stabil','fdsadfsa','08132772662','Jl Majapahit No.56','Semarang Barat',0);
 
 /*Table structure for table `teknisi_upload` */
 
@@ -68,19 +72,21 @@ CREATE TABLE `user` (
   `nama_instansi` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
   `alamat` text NOT NULL,
+  `no_hp` varchar(20) NOT NULL,
   `username` varchar(128) NOT NULL,
   `password` varchar(128) NOT NULL,
   `role_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`nama_instansi`,`email`,`alamat`,`username`,`password`,`role_id`) values 
-(1,'Hesty A.','','','admin123','$2y$10$i4HD610v2o5HOxZXEC4G5eO.E.D0oVy/eKAohNku2EXZOOW4Y75pC',1),
-(2,'Instansi A','instansi.pertama@gmail.com','Lhokseumawe','hesty123','$2y$10$QO4ipamQMvPbBrFZcVD35ODxdUPYOoVYyqmwRbw5EgJhmSxW/3fEm',3),
-(6,'Tito','tito@gmail.com','Jl Majapahit No.56','tito123','$2y$10$AogxtiAHwOW7CjEzaCK7nOG1NOTHbTZ5v.vZrRymQfsODdgY3nRDO',2);
+insert  into `user`(`id`,`nama_instansi`,`email`,`alamat`,`no_hp`,`username`,`password`,`role_id`) values 
+(1,'Hesty A.','','','08132772662','admin123','$2y$10$i4HD610v2o5HOxZXEC4G5eO.E.D0oVy/eKAohNku2EXZOOW4Y75pC',1),
+(2,'Arif Budiman','instansi.pertama@gmail.com','Lhokseumawe','08132772662','hesty123','$2y$10$QO4ipamQMvPbBrFZcVD35ODxdUPYOoVYyqmwRbw5EgJhmSxW/3fEm',3),
+(6,'Tito','tito@gmail.com','Jl Majapahit No.56','08132772662','tito123','$2y$10$AogxtiAHwOW7CjEzaCK7nOG1NOTHbTZ5v.vZrRymQfsODdgY3nRDO',2),
+(7,'Alfaturachman','putra@gmail.com','jl sadffds','','ftudinus','$2y$10$gMHFA5/bM2e2FcBzuIvW/e3FnYe.P9ylHLM0nWK9GZhBECMoGyKZ6',3);
 
 /*Table structure for table `user_role` */
 
