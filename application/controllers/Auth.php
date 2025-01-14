@@ -80,13 +80,10 @@ class Auth extends CI_Controller
             'valid_email' => 'Masukkan email yang valid.',
             'is_unique' => 'Email ini sudah terdaftar!'
         ]);
-<<<<<<< HEAD
         $this->form_validation->set_rules('no_hp', 'No HP', 'required|trim|callback_valid_no_hp|is_unique[user.no_hp]', [
             'required' => 'No HP wajib diisi.',
             'is_unique' => 'No HP ini sudah terdaftar!'
         ]);
-=======
->>>>>>> 0cfc4f1391423f093e86fab24b84c61a6e06ac70
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
             'required' => 'Username wajib diisi.',
             'is_unique' => 'Username ini sudah terdaftar!'
@@ -108,7 +105,6 @@ class Auth extends CI_Controller
         }
     }
 
-<<<<<<< HEAD
     public function valid_no_hp($no_hp)
     {
         // Contoh format nomor HP: dimulai dengan 08, hanya angka, dan panjang 10-13 karakter
@@ -120,8 +116,6 @@ class Auth extends CI_Controller
         }
     }
 
-=======
->>>>>>> 0cfc4f1391423f093e86fab24b84c61a6e06ac70
     private function _register_store()
     {
         // Ambil input dari form
@@ -131,10 +125,7 @@ class Auth extends CI_Controller
             'username' => htmlspecialchars($this->input->post('username', true)),
             'password' => password_hash($this->input->post('pass1'), PASSWORD_DEFAULT),
             'alamat' => htmlspecialchars($this->input->post('alamat', true)),
-<<<<<<< HEAD
             'no_hp' => htmlspecialchars($this->input->post('no_hp', true)),
-=======
->>>>>>> 0cfc4f1391423f093e86fab24b84c61a6e06ac70
             'role_id' => 2 // Role default untuk user biasa
         ];
 
